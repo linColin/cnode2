@@ -1,0 +1,125 @@
+body {
+  font-family: Microsoft Yahei, WenQuanYi Micro Hei, Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, sans-serif;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  background-color: #f2f2f2;
+}
+p, h1, h2, h3, h4, h5, h6, ul, ol, dl, dt, dd {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+.clearfix:after {
+  content: ' ';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  *zoom: 1;
+}
+*{
+    box-sizing: border-box;
+}
+
+header{
+    position: fixed;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    top: 0;
+    width: 100%;
+    max-width: 720px;
+    background: #fff;
+    box-shadow: 0 0 4px rgba(0,0,0,.25);
+    z-index: 6;
+    text-align: center;
+}
+header span{
+    font-size: .8rem;
+}
+.topic-list{
+    margin-top: 1.8rem;
+}
+.topic-list .list-wrapper{
+    padding: .5rem .6rem;
+    border-bottom: 1px solid #ccc;
+}
+.topic-list h3{
+    color: #333;
+    font-size: .71rem;
+    margin-bottom: .2rem;
+    position: relative;
+}
+.topic-list .content{
+    display: flex;
+}
+.topic-list .content img{
+    width: 2rem;
+    height: 2rem;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+.topic-list .content div{
+    flex: 1;
+    margin-left: .4rem;
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+}
+.content div p{
+    font-size: .65rem;
+    display: flex;
+}
+.content div p:last-child{
+    color: #333;
+    font-size: .6rem;
+}
+.content .name{
+    color: #2D68A2;
+}
+.content .name, .content .topicTime{
+    display: block;
+    flex: 1;
+    width: 100%;
+}
+.content .topicTime{
+    color: #999;
+}
+
+
+.topic-list h3 span{
+    display: inline-block;
+    color: #fff;
+    width: 1.4rem;
+    height: .7rem;
+    line-height: .7rem;
+    text-align: center;
+    margin-right: .4rem;
+    font-size: .35rem;
+    vertical-align: middle;
+    margin-top: -.08rem;
+    border-radius: .1rem;
+}
+.top span{ background-color: #e13239; }
+.ask span{ background-color: #38b1f8; }
+.share span{ background-color: #72c53f; }
+.job span{ background-color: #9b59b6; }
+.good span{ background-color: #b99a57; }
+.err span{ background-color: #ddd;}
+  
