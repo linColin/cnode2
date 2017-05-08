@@ -217,7 +217,7 @@ var TopicList = {
 }
 
 var Home = {
-    template:'<b>正在加载中....</b>',
+    template:'<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);">正在加载中....</div>',
     mounted() {
         setTimeout(() => {
             this.$router.push({
