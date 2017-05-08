@@ -105,7 +105,7 @@ Vue.component('list-block',{
         <div>
             <ul class="topic-list">
                 <li class="list-wrapper" v-for="item in topicList">
-                    <router-link :to="{path:'/topic',query:item}">
+                    <router-link :to="{name:'topic', params:{id:item.id}}">
                         <h3 :class="getThemeClass(item)">
                             <span>{{ getTheme(item) }}</span>{{ item.title }}
                         </h3>
@@ -202,8 +202,70 @@ Vue.component('list-block',{
 
 // 路由组件
 var Topic = {
-    template: '<div class="markdown-body"><span v-html="$route.query.content"></span></div>',
+    data:function () {
+        return {
+            topic: {},
+            topicId: '',
+            msg: {
+                share: '分享',
+                job: '招聘',
+                ask: '问答',
+                good: '精华',
+                top: '置顶',
+                err: '暂无'
+            },
+        }
+    },
+    template: ` <div class="markdown-body" style="padding:0">
+                    <div class="topic-list">
+                        <div class="list-wrapper">
+                            <h3 :class="getThemeClass(topic)">
+                                <span>{{ getTheme(topic) }}</span>{{ topic.title }}
+                            </h3>
+                            <div class="content">
+                                <img :src="topic.author.avatar_url">
+                                <div>
+                                    <p>
+                                        <span class="name">{{ topic.author.loginname }}</span>
+                                        <span><i style="color: red">{{ topic.reply_count }}</i> <em style="color: #999">/ {{ topic.visit_count }}</em></span>
+                                    </p>
+                                    <p><span class="topicTime">{{ topic.create_at | formatTime }}</span><span>{{ topic.last_reply_at | formatTime}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <section v-html="topic.content" style="padding:.5rem .6rem;"></section>
+                </div>`,
+    methods: {
+        getThemeClass: function (item) {
+            var theme = item.top ? 'top'
+                        : item.good ? 'good'
+                        : item.tab ? item.tab
+                        : 'err'
+            return theme
+        },
+        getTheme: function (item) {
+            var theme = item.top ? 'top'
+                        : item.good ? 'good'
+                        : item.tab ? item.tab
+                        : 'err'
+            return this.msg[theme]
+        },
+    },
+    filters: {
+        formatTime: function (time) {
+            var timeagoInstance = timeago();
+            var x = timeagoInstance.format(time, 'zh_CN')
+            return x
+        }
+    },
     mounted(){
+        this.topicId = this.$route.params.id
+        this.$http.get('https://cnodejs.org/api/v1/topic/' + this.topicId).then(function (res) {
+            if(res && res.data){
+                this.topic = res.data.data;
+            }
+        })
         $(window).scrollTop(0);
     }
 }
@@ -232,7 +294,7 @@ var routes = [
     // { path: '/', redirect: '/topiclist' },
     { path: '/', name: 'home', component: Home },
     { path: '/topiclist', name: 'topiclist', component: TopicList },
-    { path: '/topic', name: 'topic', component: Topic }
+    { path: '/topic/:id', name: 'topic', component: Topic }
 ]
 
 
