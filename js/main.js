@@ -68,6 +68,10 @@ Vue.component('nav-header',{
             }
         }
     },
+    mounted(){
+        $('html, body').removeClass('scroll-hide');
+        this.sideBar = false
+    },
     watch: {
         '$route' (to, from) {
             if (to.query && to.query.tab) {
@@ -182,16 +186,19 @@ Vue.component('list-block',{
     },
     beforeRouteLeave(to, from, next) {
 
-        next();
+        console.log("beforeRouteLeave")
     },
     beforeRouteEnter(to, from, next) {
 
-        next();
+        console.log("beforeRouteEnter")
     },
     watch: {
         '$route' (to, from) {
             if (to.query && to.query.tab) {
                 this.params.tab = to.query.tab
+                this.topicList = [];
+            }else{
+                this.params.tab = "all"
                 this.topicList = [];
             }
             this.params.page = 1
