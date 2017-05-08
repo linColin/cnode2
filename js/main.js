@@ -53,7 +53,7 @@ Vue.component('nav-header',{
                 <router-link class="iconfontyyy" :to="{name:'topiclist',query:{tab:'share'}}"><i style="margin-right: 10px;">&#xe729;</i>分享</router-link>
                 <router-link class="iconfontyyy" :to="{name:'topiclist',query:{tab:'ask'}}"><i style="margin-right: 10px;">&#xe704;</i>问答</router-link>
                 <router-link class="iconfontyyy" :to="{name:'topiclist',query:{tab:'job'}}"><i style="margin-right: 10px;">&#xe6ff;</i>招聘</router-link>
-                <router-link class="iconfontyyy" :to="{name:'topiclist',query:{tab:'job'}}"><i style="margin-right: 10px;">&#xe71b;</i>关于</router-link>
+                <router-link class="iconfontyyy" :to="{name:'about'}"><i style="margin-right: 10px;">&#xe71b;</i>关于</router-link>
             </div>
             <section v-if="sideBar" class="side-bar" @click="openMenu"></section>
         </header>
@@ -62,9 +62,9 @@ Vue.component('nav-header',{
         openMenu() {
             this.sideBar = !this.sideBar;
             if(this.sideBar){
-                $('html, body, #page').addClass('scroll-hide');
+                $('html, body').addClass('scroll-hide');
             }else{
-                $('html, body, #page').removeClass('scroll-hide');
+                $('html, body').removeClass('scroll-hide');
             }
         }
     },
@@ -73,6 +73,7 @@ Vue.component('nav-header',{
             if (to.query && to.query.tab) {
                 this.title = this.msg[to.query.tab]
             }
+            $('html, body').removeClass('scroll-hide');
             this.sideBar = false
         }
     }
@@ -223,10 +224,10 @@ var Topic = {
                                 <span>{{ getTheme(topic) }}</span>{{ topic.title }}
                             </h3>
                             <div class="content">
-                                <img :src="topic.author.avatar_url">
+                                <img :src="topic.author && topic.author.avatar_url">
                                 <div>
                                     <p>
-                                        <span class="name">{{ topic.author.loginname }}</span>
+                                        <span class="name">{{ topic.author&&topic.author.loginname }}</span>
                                         <span><i style="color: red">{{ topic.reply_count }}</i> <em style="color: #999">/ {{ topic.visit_count }}</em></span>
                                     </p>
                                     <p><span class="topicTime">{{ topic.create_at | formatTime }}</span><span>{{ topic.last_reply_at | formatTime}}</span></p>
@@ -288,13 +289,31 @@ var Home = {
         }, 2000);
     }
 }
-
+var About = {
+    template:`
+        <section>
+            <div style="padding:.5rem 0 .6rem 1rem;">
+                <h3 style="font-size:.8rem;margin-bottom:.3rem;">关于项目</h3>
+                <p style="font-size:.6rem;">该项目是基于Cnodejs的api，采用vue开发</p>
+            </div>
+            <div style="padding:.5rem 0 .6rem 1rem;">
+                <h3 style="font-size:.8rem;margin-bottom:.3rem;">github 地址</h3>
+                <p style="font-size:.6rem;">https://github.com/linColin/vue-cnode</p>
+            </div>
+            <div style="padding:.5rem 0 .6rem 1rem;">
+                <h3 style="font-size:.8rem;margin-bottom:.3rem;">当前版本</h3>
+                <p style="font-size:.6rem;">Vue2.0</p>
+            </div>
+        </section>
+    `,
+}
 
 var routes = [
     // { path: '/', redirect: '/topiclist' },
     { path: '/', name: 'home', component: Home },
     { path: '/topiclist', name: 'topiclist', component: TopicList },
-    { path: '/topic/:id', name: 'topic', component: Topic }
+    { path: '/topic/:id', name: 'topic', component: Topic },
+    { path: '/about', name: 'about', component: About }
 ]
 
 
