@@ -37,19 +37,20 @@ a {
     box-sizing: border-box;
 }
 
-header{
+.nav-bar{
     position: fixed;
     height: 1.8rem;
     line-height: 1.8rem;
     top: 0;
     width: 100%;
-    max-width: 720px;
     background: #fff;
     box-shadow: 0 0 4px rgba(0,0,0,.25);
     z-index: 6;
     text-align: center;
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
 }
-header span{
+.nav-bar span{
     font-size: .8rem;
 }
 .topic-list{
@@ -122,4 +123,3 @@ header span{
 .job span{ background-color: #9b59b6; }
 .good span{ background-color: #b99a57; }
 .err span{ background-color: #ddd;}
-  
