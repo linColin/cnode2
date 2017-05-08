@@ -12,24 +12,73 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/github-markdown.css">
     <style>
-
+        @font-face {
+            font-family: 'iconfont';  /* project id 294252 */
+            src: url('//at.alicdn.com/t/font_0vayqtow2ttn8kt9.eot');
+            src: url('//at.alicdn.com/t/font_0vayqtow2ttn8kt9.eot?#iefix') format('embedded-opentype'),
+            url('//at.alicdn.com/t/font_0vayqtow2ttn8kt9.woff') format('woff'),
+            url('//at.alicdn.com/t/font_0vayqtow2ttn8kt9.ttf') format('truetype'),
+            url('//at.alicdn.com/t/font_0vayqtow2ttn8kt9.svg#iconfont') format('svg');
+        }
+        .iconfontyyy{
+            font-family:"iconfont" !important;
+            font-size:16px;font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .side-bar{
+            background: rgba(0,0,0,.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9;
+        }
+        .menu{
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            left: -200px;
+            bottom: 0;
+            background: #fff;
+            width: 200px;
+            transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+        }
+        .show{
+            transform: translateX(200px);
+        }
+        .scroll-hide {
+            height: 100%;
+            overflow: hidden;
+        }
+        .menuBtn{
+            position: absolute;
+            left: 0;
+            height: 1.8rem;
+            width: 50px;
+            background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkzOTY1NTgzMTM0IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjM3MzQiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNjgwLjYwOCAzODRoLTIyNGEzMiAzMiAwIDEgMSAwLTY0aDIyNGEzMiAzMiAwIDEgMSAwIDY0bTAgMTYwaC0yMjRhMzIgMzIgMCAxIDEgMC02NGgyMjRhMzIgMzIgMCAxIDEgMCA2NG0wIDE2MGgtMjI0YTMyIDMyIDAgMSAxIDAtNjRoMjI0YTMyIDMyIDAgMSAxIDAgNjRtLTMyOC42NC0zMjBhMzIgMzIgMCAxIDEgMC02NCAzMiAzMiAwIDAgMSAwIDY0bTAgMTYwYTMyLjAzMiAzMi4wMzIgMCAwIDEgMC02NCAzMiAzMiAwIDAgMSAwIDY0bTAgMTYwYTMyLjAzMiAzMi4wMzIgMCAwIDEgMC02NCAzMiAzMiAwIDAgMSAwIDY0TTc5OS44NzIgMTYwSDIyMy42OEE2My43NzYgNjMuNzc2IDAgMCAwIDE2MCAyMjMuNzQ0djU3Ni41MTJDMTYwIDgzNS4zOTIgMTg4LjYwOCA4NjQgMjIzLjc3NiA4NjRoNTc2LjUxMmE2My43NzYgNjMuNzc2IDAgMCAwIDYzLjY4LTYzLjc0NFYyMjMuNzQ0QTY0IDY0IDAgMCAwIDc5OS44NzIgMTYwIiBwLWlkPSIzNzM1Ij48L3BhdGg+PC9zdmc+) no-repeat center;
+            background-size: 30px 30px;
+        }
+        .menu{padding: 5% 5% 0 5%;}
+        .menu a{
+            display: block;
+            padding: 9% 0;
+        }
     </style>
 </head>
-<body style="width:100%;max-width:720px;margin:0 auto;">
+<body style="width:100%;margin:0 auto;">
     <div id="app">
-        <header>
-            <i style="position: absolute;left: 0"></i>
-            <span>全部</span>
-        </header>
-        <router-view :items="topicList" :msg="msg"></router-view>
+        <router-view></router-view>
     </div>
-    <script src="https://lincolin.github.io/vue-cnode/js/vue.js"></script>
-    <script src="https://lincolin.github.io/vue-cnode/js/vue-router.js"></script>
-    <script src="https://lincolin.github.io/vue-cnode/js/vue-resource.js"></script>
-    <script src="https://lincolin.github.io/vue-cnode/js/timeago.js"></script>
-    <script src="https://lincolin.github.io/vue-cnode/js/jquery.js"></script>
-    <!-- <script src="js/route.js"></script> -->
-    <script src="https://lincolin.github.io/vue-cnode/js/main.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script src="js/vue-resource.js"></script>
+    <script src="js/timeago.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/main.js"></script>
 
     <script>
         // 让css :active在移动端有
@@ -37,13 +86,20 @@
 
     var htmlFont = document.getElementsByTagName("html")[0];
         var htmlWidth = document.body.clientWidth;
+        htmlWidth = mor(htmlWidth)
         htmlFont.style.fontSize = htmlWidth*0.0625 +"px"
         window.onresize = function(){
             htmlFont = document.getElementsByTagName("html")[0];
             htmlWidth = document.body.clientWidth;
+            htmlWidth = mor(htmlWidth)
             htmlFont.style.fontSize = htmlWidth*0.0625 +"px"
         }
 
+    function mor(w) {
+        if(w>640){
+            return 640;
+        }
+    }
     var x = (720/320)*20
     </script>
 </body>
