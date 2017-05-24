@@ -86,7 +86,7 @@
 
     var htmlFont = document.getElementsByTagName("html")[0];
         var htmlWidth = document.body.clientWidth;
-        htmlWidth = mor(htmlWidth)
+        if(htmlWidth>640){ htmlWidth = 640 }
         htmlFont.style.fontSize = htmlWidth*0.0625 +"px"
         window.onresize = function(){
             htmlFont = document.getElementsByTagName("html")[0];
@@ -94,12 +94,6 @@
             htmlWidth = mor(htmlWidth)
             htmlFont.style.fontSize = htmlWidth*0.0625 +"px"
         }
-
-    function mor(w) {
-        if(w>640){
-            return 640;
-        }
-    }
     var x = (720/320)*20
     </script>
 </body>
